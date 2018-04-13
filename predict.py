@@ -8,7 +8,6 @@ num_epochs = 100000
 def predict(x):
     hog_test_x = compress_data(x)
 
-
     x_train, y_train = pkl.load(open('hog_train.pkl', mode='rb'))
     nn = NeuralNetwork([x_train.shape[1], 384, y_train.shape[1]])
     print('Starting training with test sample size: ' + str(hog_test_x.shape[0]) + ' and number of iterations: ' + str(num_epochs))

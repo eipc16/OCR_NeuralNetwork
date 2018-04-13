@@ -34,12 +34,13 @@ class NeuralNetwork:
                 a.append(hidden_inputs)
             error = y[i] - a[-1][:-1]
 
-            if(np.abs(np.mean(error)) < min_err):
-                min_err = np.abs(np.mean(error))
+            #if(np.abs(np.mean(error)) < min_err):
+                #min_err = np.abs(np.mean(error))
                 #output = open('best_err.pkl', 'wb')
                 #pkl.dump(self.weights, output)
                 #output.close()
-            print('Iteration: ' + str(k) + '/' + str(epochs))
+            if(k % 10000 == 0):
+                print('Iteration: ' + str(k) + '/' + str(epochs))
 
             deltas = [error * self.activation_deriv(a[-1][:-1])]
             l = len(a) - 2
