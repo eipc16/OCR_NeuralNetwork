@@ -4,7 +4,7 @@ import pickle as pkl
 from data_compressor import compress_training_set
 from sklearn.metrics import classification_report
 
-TEST_SIZE = 10000;
+TEST_SIZE = 2500;
 
 #compress_training_set('train.pkl', 'hog_train.pkl')
 
