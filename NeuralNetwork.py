@@ -19,7 +19,6 @@ class NeuralNetwork:
         self.weights.append((2*np.random.random((layers[i] + 1, layers[i +
                             1]))-1)*0.25)
 
-    #test
     def fit(self, X, y, learning_rate=0.2, epochs=10000):
         ones = np.ones([X.shape[0], 1])
         X = np.concatenate((X, ones), axis=1)
