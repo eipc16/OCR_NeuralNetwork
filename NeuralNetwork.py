@@ -39,8 +39,8 @@ class NeuralNetwork:
                 #output = open('best_err.pkl', 'wb')
                 #pkl.dump(self.weights, output)
                 #output.close()
-            if(k % 10000 == 0):
-                print('Iteration: ' + str(k) + '/' + str(epochs))
+            if((k + 1) % 10000 == 0):
+                print('Iteration: ' + str(k + 1) + '/' + str(epochs))
 
             deltas = [error * self.activation_deriv(a[-1][:-1])]
             l = len(a) - 2
