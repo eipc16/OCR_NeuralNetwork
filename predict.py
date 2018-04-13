@@ -18,7 +18,7 @@ def predict(x):
     output = open('NN_weights.pkl', 'wb')
     pkl.dump(nn.get_weights(), output)
     output.close()
-    #test
+    #test, test, test
 
     predictions = np.zeros(x.shape[0])
     print('Starting prediction with test sample: ' + str(hog_test_x.shape[0]))
