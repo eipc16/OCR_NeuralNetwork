@@ -24,6 +24,7 @@ class NeuralNetwork:
         ones = np.ones([X.shape[0], 1])
         X = np.concatenate((X, ones), axis=1)
         min_err = np.inf
+
         for k in range(epochs):
             i = np.random.randint(X.shape[0])
             a = [X[i]]
