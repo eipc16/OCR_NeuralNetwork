@@ -3,7 +3,7 @@ import pickle as pkl
 from NeuralNetwork import NeuralNetwork
 from data_compressor import compress_data
 
-num_epochs = 100000
+num_epochs = 80000
 
 def predict(x):
     hog_test_x = compress_data(x)
