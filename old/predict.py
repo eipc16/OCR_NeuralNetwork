@@ -20,6 +20,7 @@ def predict(x):
     #output.close()
 
     predictions = np.zeros(x.shape[0])
+
     print('Starting prediction with test sample: ' + str(hog_test_x.shape[0]))
     for i in range(x.shape[0]):
         out = nn.predict(hog_test_x[i])

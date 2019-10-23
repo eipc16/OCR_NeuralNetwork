@@ -1,75 +1,108 @@
 import numpy as np
 
-def logistic(x):
-    np.seterr( over='ignore' )
+def sigmoid(x):
     return 1/(1 + np.exp(-x))
 
-def logistic_derivative(x):
-    return logistic(x)*(1-logistic(x))
+def sigmoid_derivative(x):
+    return sigmoid(x) * (1 - sigmoid(x))
+
+def square_loss(y_pred, label):
+    return np.mean(np.power(y_pred - label, 2))
+
+def cross_entropy(y_pred, label):
+    y_temp = label * np.log(y_pred)
+    return -np.sum(y_temp)
+
+def softmax(x):
+    exps = np.exp(x - np.max(x))
+    return exps / np.sum(exps, axis=1, keepdims=True)
+
+def fn_loss(y, y_pred):
+    error = y - y_pred
+    cost = np.mean(np.square(error))
+    error = error / y.shape[0]
+    return error, cost
 
 class NeuralNetwork:
     def __init__(self, layers):
-        self.activation = logistic
-        self.activation_deriv = logistic_derivative
-
+        self.activation = sigmoid
+        self.activation_derivative = sigmoid_derivative
+        self.loss = cross_entropy
+        self._eta = 0.2
+        self._batch_size = 32
         self.weights = []
-        for i in range(1, len(layers) - 1):
-            self.weights.append((2*np.random.random((layers[i - 1] + 1, layers[i]
-                                ))-1)*0.25)
-        self.weights.append((2*np.random.random((layers[i] + 1, layers[i +
-                            1]))-1)*0.25)
+        self.layers = layers
+        self.weights = [np.random.randn(size1, size2) * np.sqrt(2 / size2) for size1, size2 in zip(layers[1:], layers[:-1])]
+        self.biases = [np.random.randn(1, size) for size in layers[1:]]
+    
+    def forward(self, a):
+        # a = np.reshape(a, (len(a), 1))
+        self.activations, self.z = [], []
+        self.activations.append(a)
 
-    def fit(self, X, y, learning_rate=0.2, epochs=10000):
-        ones = np.ones([X.shape[0], 1])
-        X = np.concatenate((X, ones), axis=1)
-        min_err = np.inf
+        last_layer = len(self.weights)
 
-        for k in range(epochs):
-            i = np.random.randint(X.shape[0])
-            a = [X[i]]
+        for i, (weights, biases) in enumerate(zip(self.weights, self.biases)):
+            z = a @ weights.T + biases
 
-            for l in range(len(self.weights)):
-                hidden_inputs = np.ones([self.weights[l].shape[1] + 1])
-                hidden_inputs[0:-1] = self.activation(np.dot(a[l], self.weights[l]))
-                a.append(hidden_inputs)
-            error = y[i] - a[-1][:-1]
+            if(i == last_layer - 1):
+                a = softmax(z)
+            else:
+                a = self.activation(z)
 
-            #if(np.abs(np.mean(error)) < min_err):
-                #min_err = np.abs(np.mean(error))
-                #output = open('best_err.pkl', 'wb')
-                #pkl.dump(self.weights, output)
-                #output.close()
-            if((k + 1) % 10000 == 0):
-                print('Iteration: ' + str(k + 1) + '/' + str(epochs))
+            self.z.append(z)
+            self.activations.append(a)
+        return a
 
-            deltas = [error * self.activation_deriv(a[-1][:-1])]
-            l = len(a) - 2
+    def backpropagation(self, x, error):
+        delta = error * self.activation_derivative(self.z[-1])
+        update = self.activations[-2].T @ delta
+        
+        for i in range(len(self.layers) - 2, -1, -1):         
+            self.weights[i] = self.weights[i] - self._eta * update.T
+            self.biases[i] = self.biases[i] - self._eta * np.sum(delta, axis=0, keepdims=True)
 
-            # The last layer before the output is handled separately because of
-            # the lack of bias node in output
-            deltas.append(deltas[-1].dot(self.weights[l].T)*self.activation_deriv(a[l]))
+            if i != 0:
+                delta = delta @ self.weights[i] * self.activation_derivative(self.z[i - 1])
+                update = self.activations[i - 1].T @ delta
 
-            for l in range(len(a) -3, 0, -1): # we need to begin at the second to last layer
-                deltas.append(deltas[-1][:-1].dot(self.weights[l].T)*self.activation_deriv(a[l]))
+    def fit(self, X_data, y_data, X_validate=None, y_validate=None, epochs=10000):
+        n = X_data.shape[0]
+        
+        for epoch in range(epochs):
+            perm = np.random.permutation(n)
+            X_data, y_data = X_data[perm], y_data[perm]
 
-            deltas.reverse()
-            for i in range(len(self.weights)-1):
-                layer = np.atleast_2d(a[i])
-                delta = np.atleast_2d(deltas[i])
-                self.weights[i] += learning_rate * layer.T.dot(delta[:,:-1])
-            # Handle last layer separately because it doesn't have a bias unit
-            i+=1
-            layer = np.atleast_2d(a[i])
-            delta = np.atleast_2d(deltas[i])
-            self.weights[i] += learning_rate * layer.T.dot(delta)
+            batches_X = [X_data[k:k + self._batch_size] for k in range(0, n, self._batch_size)]
+            batches_y = [y_data[k:k + self._batch_size] for k in range(0, n, self._batch_size)]
+            for i in range(len(batches_X)):
+                X, y = batches_X[i], batches_y[i]
+                a = self.forward(X)
+                error, cost = fn_loss(a, y)
+                self.backpropagation(X, error)
+
+                # if i % 10 == 0:
+                #     print(f'Epoch: {epoch}/{epochs} | Batch: {i}/{len(batches_X)} | Cost: {cost}')
+
+
+            if X_validate is not None and y_validate is not None:
+                validate_prediction = self.predict(X_validate)
+                labels = np.argmax(y_validate, axis=1)
+                accr = (np.sum(np.where(validate_prediction == labels, 1, 0)) / y_validate.shape[0]) * 100;
+                print(f'Epoch {epoch} | Cost: {cost} |  Validation accuraccy {accr}%')
+            else:
+                print(f'Epoch {epoch} | cost: {cost}')
 
     def predict(self, x):
-        a = np.array(x)
-        for l in range(0, len(self.weights)):
-            temp = np.ones(a.shape[0]+1)
-            temp[0:-1] = a
-            a = self.activation(np.dot(temp, self.weights[l]))
-        return a
+        a = self.forward(x)
+        return np.argmax(a, axis=1)
+
+    @staticmethod
+    def check_prediction(y_pred, output):
+        return np.sum(y_pred == output) / len(y_pred)
+
+    def loss(self, y_pred, output):
+        return self.loss(y_pred, output) 
 
     def get_weights(self):
         return self.weights

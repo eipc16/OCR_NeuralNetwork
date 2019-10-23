@@ -1,27 +1,28 @@
-from predict import predict
 import numpy as np
 import pickle as pkl
-from data_compressor import compress_training_set
-from sklearn.metrics import classification_report
 
-TEST_SIZE = 2500;
+from data_loader import load_data_wrapper
+from NeuralNetwork import NeuralNetwork
 
-#compress_training_set('train.pkl', 'hog_train.pkl')
+training, validation, test = load_data_wrapper('mnist.pkl')
 
-x_test, y_test = pkl.load(open('train.pkl', mode='rb'))
+nn = NeuralNetwork([training[0].shape[1], 384, 100,  training[1].shape[1]])
 
-x_test = x_test[0:TEST_SIZE]
-y_test = y_test[0:TEST_SIZE]
+T_X, T_y = training
+V_X, V_y = validation
+T_X, T_y = np.squeeze(T_X), np.squeeze(T_y)
+V_X, V_y = np.squeeze(V_X), np.squeeze(V_y)
 
-result = predict(x_test)
+Test_X, Test_y = test
+Test_X, Test_y = np.squeeze(Test_X), np.squeeze(Test_y)
+
+# print(T_y.shape)
+
+nn.fit(T_X, T_y, epochs=100, X_validate=V_X, y_validate=V_y)
+predictions = np.zeros(Test_X.shape[0])
 
 correct = 0
-
-for i in range(result.shape[0]):
-    if(result[i] == y_test[i]):
-        correct += 1
-
-acc = correct / y_test.shape[0]
-
-print(classification_report(y_test, result))
-print('%.2f' % (acc * 100))
+out = nn.predict(T_X)
+labels = np.argmax(T_y, axis=1)
+accr = (np.sum(np.where(out == labels, 1, 0)) / V_y.shape[0]) * 100;
+print(f'Accuraccy {accr}%')
