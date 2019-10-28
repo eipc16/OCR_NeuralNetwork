@@ -11,7 +11,7 @@ def square_loss(y_pred, label):
 
 def cross_entropy(y_pred, label):
     y_temp = label * np.log(y_pred)
-    return -np.sum(y_temp)
+    return -np.sum(y_temp, axis=0)
 
 def softmax(x):
     exps = np.exp(x - np.max(x))

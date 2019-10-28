@@ -8,7 +8,7 @@ def _load_file(file_name):
     return data
 
 def reshape_and_vectorize(dataset):
-    inputs = np.array([np.reshape(x, (784,)) for x in dataset[0]])
+    inputs = np.array([np.reshape(x, (784, 1)) for x in dataset[0]])
     results = np.array([vectorized_result(y) for y in dataset[1]])
     return inputs, results
 
