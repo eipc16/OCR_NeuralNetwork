@@ -2,35 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1595083a-328a-4a7e-88d7-5d53583a75e8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/initializers/range_initializer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/batch_size_tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/default_config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/neuron_tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_activations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/weights_tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/activations/activation.py" beforeDir="false" afterPath="$PROJECT_DIR$/activations/activation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/activations/relu.py" beforeDir="false" afterPath="$PROJECT_DIR$/activations/relu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/activations/sigmoid.py" beforeDir="false" afterPath="$PROJECT_DIR$/activations/sigmoid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/activations/softmax.py" beforeDir="false" afterPath="$PROJECT_DIR$/activations/softmax.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/callbacks/callback.py" beforeDir="false" afterPath="$PROJECT_DIR$/callbacks/callback.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/callbacks/logger_callback.py" beforeDir="false" afterPath="$PROJECT_DIR$/callbacks/logger_callback.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/callbacks/save_best_callback.py" beforeDir="false" afterPath="$PROJECT_DIR$/callbacks/save_best_callback.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/initializers/initializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/initializers/initializer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/initializers/normal_initializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/initializers/normal_initializer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/initializers/xavier_initializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/initializers/xavier_initializer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/initializers/zero_initializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/initializers/zero_initializer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/dense.py" beforeDir="false" afterPath="$PROJECT_DIR$/layers/dense.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/time_log.log" beforeDir="false" afterPath="$PROJECT_DIR$/callbacks/plot_callback.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/state.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/state.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/optimizers/gradient_descent_static.py" beforeDir="false" afterPath="$PROJECT_DIR$/optimizers/gradient_descent_static.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/optimizers/optimizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/optimizers/optimizer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/data_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testing.py" beforeDir="false" afterPath="$PROJECT_DIR$/testing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/pickle_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/pickle_utils.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,10 +20,13 @@
         <entry file="file://$PROJECT_DIR$/testing.py">
           <provider selected="true" editor-type-id="live-pycharm">
             <state>
-              <first_editor relative-caret-position="208">
-                <caret line="8" column="45" lean-forward="true" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+              <first_editor relative-caret-position="156">
+                <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+                <folding>
+                  <element signature="e#0#33#0" expanded="true" />
+                </folding>
               </first_editor>
-              <second_editor />
+              <second_editor relative-caret-position="-182" />
             </state>
           </provider>
         </entry>
@@ -172,21 +148,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/weights_tests.py">
-          <provider selected="true" editor-type-id="live-pycharm">
-            <state>
-              <first_editor>
-                <caret selection-end-line="8" selection-end-column="99" />
-                <folding>
-                  <element signature="e#0#33#0" expanded="true" />
-                </folding>
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -209,7 +170,6 @@
         <option value="$PROJECT_DIR$/losses/loss.py" />
         <option value="$PROJECT_DIR$/layers/layer.py" />
         <option value="$PROJECT_DIR$/metrics/metric.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/preprocessing/transformations.py" />
         <option value="$PROJECT_DIR$/losses/crossentropy.py" />
         <option value="$PROJECT_DIR$/metrics/normal_accuracy.py" />
@@ -242,6 +202,7 @@
         <option value="$PROJECT_DIR$/activations/relu.py" />
         <option value="$PROJECT_DIR$/activations/sigmoid.py" />
         <option value="$PROJECT_DIR$/testing.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -409,7 +370,7 @@
       <workItem from="1572544652261" duration="11283000" />
       <workItem from="1572604635661" duration="465000" />
       <workItem from="1572605117292" duration="13257000" />
-      <workItem from="1572619507133" duration="4698000" />
+      <workItem from="1572619507133" duration="4801000" />
     </task>
     <task id="LOCAL-00001" summary="fully objected oriented neural network">
       <created>1572556763723</created>
@@ -425,17 +386,24 @@
       <option name="project" value="LOCAL" />
       <updated>1572611380522</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added testing methods">
+      <created>1572624218358</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1572624218358</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33002000" />
+    <option name="totallyTimeSpent" value="33105000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1918" y="0" width="1924" height="1082" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14652406" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14652406" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -454,7 +422,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="SciView" order="3" sideWeight="0.9309021" visible="true" weight="0.36524063" />
+      <window_info anchor="right" id="SciView" order="3" sideWeight="0.9309021" visible="true" weight="0.36524063" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" x="0" y="0" width="431" height="882" id="Documentation" order="5" sideWeight="0.06909789" side_tool="true" weight="0.32994652" />
     </layout>
@@ -465,7 +433,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fully objected oriented neural network" />
     <MESSAGE value="working network" />
-    <option name="LAST_COMMIT_MESSAGE" value="working network" />
+    <MESSAGE value="added testing methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="added testing methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -658,13 +627,6 @@
         <state>
           <first_editor />
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="123" column="19" lean-forward="true" selection-start-line="123" selection-start-column="19" selection-end-line="123" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -1085,13 +1047,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="127" column="11" lean-forward="true" selection-start-line="127" selection-start-column="11" selection-end-line="127" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/testing.py">
       <provider selected="true" editor-type-id="live-pycharm">
         <state>
-          <first_editor relative-caret-position="208">
-            <caret line="8" column="45" lean-forward="true" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+          <first_editor relative-caret-position="156">
+            <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+            <folding>
+              <element signature="e#0#33#0" expanded="true" />
+            </folding>
           </first_editor>
-          <second_editor />
+          <second_editor relative-caret-position="-182" />
         </state>
       </provider>
     </entry>
