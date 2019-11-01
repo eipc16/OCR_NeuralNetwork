@@ -3,7 +3,7 @@ import numpy as np
 
 def convert_to_one_hot(array):
     number_of_classes = np.max(array) + 1
-    return np.eye(number_of_classes)[array]
+    return np.eye(number_of_classes, dtype=np.int32)[array]
 
 
 def flatten_image(image):

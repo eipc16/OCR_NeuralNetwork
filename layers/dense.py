@@ -8,7 +8,7 @@ from optimizers.optimizer import Optimizer
 class Dense(Layer):
     def __init__(self, layer_size, weight_initializer=XavierInitializer(), activation_func=Sigmoid(),
                  bias_initializer=ZeroInitializer(), layer_name='dense'):
-        super().__init__(layer_size, name)
+        super().__init__(layer_size, layer_name)
         self._weight_initializer = weight_initializer
         self._activation_func = activation_func
         self._bias_initializer = bias_initializer
@@ -30,7 +30,7 @@ class Dense(Layer):
         self._delta = error * self._activation_func.derivative(self._activations)
 
     def feed(self, x):
-        self._activations = self._activation_func.run(z=x @ self._weights + self._biases)
+        self._activations = self._activation_func.run(x @ self._weights + self._biases)
         return self._activations
 
     def update(self, x, error, cost):

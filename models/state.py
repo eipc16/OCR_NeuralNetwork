@@ -8,7 +8,4 @@ class NetworkState:
         self.current_validation_accuracy = 0
         self.current_validation_cost = 0
 
-        self.best_validation_accuracy = 0
-        self.best_validation_cost = 0
-
         self.current_batch = ([], [])

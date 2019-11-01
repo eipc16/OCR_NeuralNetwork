@@ -12,10 +12,11 @@ class CrossEntropy(Loss):
 
     @staticmethod
     def _calc_cost(y, y_pred):
-        probabilities = -np.log(y_pred(range(y.shape[0]), y))
+        probabilities = -np.log(y_pred[range(y.shape[0]), y])
         return np.mean(probabilities)
 
     def __call__(self, y, y_pred):
+        y = np.argmax(y, axis=1)
         error = CrossEntropy._calc_error(y, y_pred)
         cost = CrossEntropy._calc_cost(y, y_pred)
         return error, cost

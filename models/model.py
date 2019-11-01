@@ -1,6 +1,7 @@
 import numpy as np
 
 from metrics.normal_accuracy import NormalAccuracy
+from metrics.time_metric import Timer
 from models.state import NetworkState
 
 
@@ -39,11 +40,22 @@ class NeuralNetwork:
     @staticmethod
     def _prepare_batches(x_train, y_train, batch_size):
         data_size = x_train.shape[0]
-        return [x_train[k:k + batch_size] for k in range(0, data_size, batch_size)], \
-               [y_train[k:k + batch_size] for k in range(0, data_size, batch_size)]
 
+        x_batch = [x_train[k:k + batch_size] for k in range(0, data_size, batch_size)]
+        y_batch = [y_train[k:k + batch_size] for k in range(0, data_size, batch_size)]
+
+        return zip(x_batch, y_batch)
+
+    def _prepare_layers(self, input_size):
+        size = input_size
+        for layer in self._layers:
+            layer(size, self._optimizer.copy())
+            size = layer.get_size()
+
+    @Timer(dump_to_file=True, message='Training time')
     def fit(self, x_train, y_train, x_val=None, y_val=None, epochs=1000, batch_size=32):
         self._state = NetworkState()
+        self._prepare_layers(x_train.shape[1])
         self._run_callbacks('on_training_begin')
 
         for epoch in range(1, epochs + 1):
@@ -53,19 +65,19 @@ class NeuralNetwork:
             batches = self._prepare_batches(x_train, y_train, batch_size)
 
             costs, predictions = [], []
-
             for batch in batches:
                 self._state.current_batch = batch
                 self._run_callbacks('on_batch_begin')
-
                 y_pred, cost = self._run_batch(batch[0], batch[1])
                 predictions.extend(y_pred)
                 costs.append(cost)
 
                 self._run_callbacks('on_batch_end')
 
-            self._state.current_training_accuracy = NormalAccuracy.calculate(y_train, predictions)
-            self._state.current_training_cost = np.mean(costs)
+            train_pred = self.predict(x_train)
+            _, train_cost = self._loss(y_train, train_pred)
+            self._state.current_training_accuracy = NormalAccuracy.calculate(y_train, train_pred)
+            self._state.current_training_cost = np.mean(train_cost)
 
             if x_val is not None and y_val is not None:
                 self._run_callbacks('on_validation_test_begin')
@@ -83,6 +95,9 @@ class NeuralNetwork:
         for layer in self._layers:
             x = layer.feed(x)
         return x
+
+    def get_state(self):
+        return self._state
 
     def _run_callbacks(self, name):
         for callback in self._callbacks:

@@ -14,7 +14,7 @@ class Timer(object):
             start_time = time.time()
             result = function(*args, **kwargs)
             end_time = time.time()
-            time_diff = (end_time - start_time) * 1000
+            time_diff = (end_time - start_time)
 
             timing_result = f'Execution of method {function.__name__} took exactly: {round(time_diff, self.accuracy)}s.'
             time_now = datetime.now()
