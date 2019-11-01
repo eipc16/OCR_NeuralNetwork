@@ -22,3 +22,9 @@ class Callback(object):
 
     def on_validation_test_end(self, model):
         pass
+
+    def on_test_begin(self, model):
+        pass
+
+    def on_test_end(self, model):
+        pass

@@ -2,7 +2,7 @@ from keras.datasets import mnist
 
 from preprocessing.transformations import convert_to_one_hot, flatten_image
 
-TRAINING_SIZE = 40000
+TRAINING_SIZE = 50000
 
 
 def get_data():

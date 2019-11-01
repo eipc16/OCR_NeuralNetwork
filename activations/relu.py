@@ -11,3 +11,6 @@ class ReLu(Activation):
 
     def derivative(self, a):
         return np.where(a > 0, 1, 0)
+
+    def get_name(self):
+        return 'relu'

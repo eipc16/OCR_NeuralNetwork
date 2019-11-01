@@ -56,6 +56,11 @@ class NeuralNetwork:
     def fit(self, x_train, y_train, x_val=None, y_val=None, epochs=1000, batch_size=32):
         self._state = NetworkState()
         self._prepare_layers(x_train.shape[1])
+
+        self._state.batch_size = batch_size
+        self._state.epochs = epochs
+        self._state.learning_rate = self._optimizer.get_learning_rate()
+
         self._run_callbacks('on_training_begin')
 
         for epoch in range(1, epochs + 1):
@@ -91,6 +96,13 @@ class NeuralNetwork:
 
         self._run_callbacks('on_training_end')
 
+    def test(self, x, y):
+        self._run_callbacks('on_test_begin')
+        predictions = self.predict(x)
+        accuracy = NormalAccuracy.calculate(predictions, y)
+        self._state.test_accuracy = accuracy
+        self._run_callbacks('on_test_end')
+
     def predict(self, x):
         for layer in self._layers:
             x = layer.feed(x)
@@ -103,4 +115,6 @@ class NeuralNetwork:
         for callback in self._callbacks:
             callback.__getattribute__(name)(self)
 
+    def set_optimizer(self, optimizer):
+        self._optimizer = optimizer
 

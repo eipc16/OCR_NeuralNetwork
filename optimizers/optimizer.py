@@ -12,6 +12,9 @@ class Optimizer(object):
     def copy(self):
         raise NotImplementedError
 
+    def normalize(self, size):
+        raise NotImplementedError
+
     def update(self, activation, error, cost):
         raise NotImplementedError
 
@@ -29,3 +32,7 @@ class Optimizer(object):
     def with_biases(self, biases):
         self._biases = biases
         return self
+
+    def get_learning_rate(self):
+        return 0
+

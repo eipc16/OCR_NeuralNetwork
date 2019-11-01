@@ -10,12 +10,12 @@ class SaveBestCallback(Callback):
         self.file_name = file_name
         self.best_accuracy = 0
 
-        if not os.path.exists(self.destination_path):
-            os.makedirs(self.destination_path)
+    def on_training_begin(self, model):
+        self.best_accuracy = 0
 
     def on_epoch_end(self, model):
         state = model.get_state()
 
         if state.current_validation_accuracy > self.best_accuracy:
             self.best_accuracy = state.current_validation_accuracy
-            save_file(f'{self.destination_path}/{self.file_name}', model)
+            save_file(self.destination_path, self.file_name, model)

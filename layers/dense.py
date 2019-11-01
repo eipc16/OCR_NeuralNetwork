@@ -4,6 +4,7 @@ from initializers.zero_initializer import ZeroInitializer
 from layers.layer import Layer
 from optimizers.optimizer import Optimizer
 
+import numpy as np
 
 class Dense(Layer):
     def __init__(self, layer_size, weight_initializer=XavierInitializer(), activation_func=Sigmoid(),
@@ -22,6 +23,7 @@ class Dense(Layer):
         self._weights = self._weight_initializer((previous_layer_size, self._layer_size))
         self._biases = self._bias_initializer((1, self._layer_size))
         self._optimizer = optimizer.copy()
+        self._optimizer.normalize(self._layer_size)
 
     def get_error(self):
         return self._delta @ self._weights.T
