@@ -15,7 +15,7 @@ class LoggerCallback(Callback):
         print(f'Training started... ')
         self._best_validation_accuracy = 0
         self._best_validation_cost = 0
-        pass
+        print(f'Chosen optimizer: {model.get_optimizer().get_name()}({model.get_optimizer().get_parameters()})')
 
     def on_validation_test_end(self, model):
         print(f'[Epoch: {model.get_state().current_epoch:5d}, '

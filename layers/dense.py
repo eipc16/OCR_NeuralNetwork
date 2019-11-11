@@ -6,6 +6,7 @@ from optimizers.optimizer import Optimizer
 
 import numpy as np
 
+
 class Dense(Layer):
     def __init__(self, layer_size, weight_initializer=XavierInitializer(), activation_func=Sigmoid(),
                  bias_initializer=ZeroInitializer(), layer_name='dense'):
@@ -17,13 +18,12 @@ class Dense(Layer):
         self._biases = None
         self._activations = None
         self._delta = None
-        self._optimizer = Optimizer()
+        self._optimizer = None
 
     def __call__(self, previous_layer_size, optimizer):
         self._weights = self._weight_initializer((previous_layer_size, self._layer_size))
         self._biases = self._bias_initializer((1, self._layer_size))
-        self._optimizer = optimizer.copy()
-        self._optimizer.normalize(self._layer_size)
+        self._optimizer = optimizer
 
     def get_error(self):
         return self._delta @ self._weights.T
@@ -36,10 +36,7 @@ class Dense(Layer):
         return self._activations
 
     def update(self, x, error, cost):
-        self._weights, self._biases = self._optimizer\
-            .with_weights(self._weights)\
-            .with_biases(self._biases)\
-            .with_delta(self._delta)\
-            .update(x, error, cost)
-
+        self._weights += self._optimizer.calc_gradients(id(self._weights), x.T @ self._delta)
+        self._biases += self._optimizer.calc_gradients(id(self._biases),
+                                                       np.sum(self._delta, axis=0, keepdims=True))
         return self._activations

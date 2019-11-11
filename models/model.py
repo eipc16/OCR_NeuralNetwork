@@ -49,7 +49,7 @@ class NeuralNetwork:
     def _prepare_layers(self, input_size):
         size = input_size
         for layer in self._layers:
-            layer(size, self._optimizer.copy())
+            layer(size, self._optimizer)
             size = layer.get_size()
 
     @Timer(dump_to_file=True, message='Training time')
@@ -59,7 +59,6 @@ class NeuralNetwork:
 
         self._state.batch_size = batch_size
         self._state.epochs = epochs
-        self._state.learning_rate = self._optimizer.get_learning_rate()
 
         self._run_callbacks('on_training_begin')
 
@@ -110,6 +109,12 @@ class NeuralNetwork:
 
     def get_state(self):
         return self._state
+
+    def get_layers(self):
+        return self._layers
+
+    def get_optimizer(self):
+        return self._optimizer
 
     def _run_callbacks(self, name):
         for callback in self._callbacks:

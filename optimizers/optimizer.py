@@ -2,37 +2,11 @@ import numpy as np
 
 
 class Optimizer(object):
-    def __init__(self):
-        self._delta = np.array([])
-        self._weights = np.array([])
-        self._biases = np.array([])
-    '''
-    For future implementation of Adaptive Gradient Descent when we have to keep track of learning_rate
-    '''
-    def copy(self):
+    def calc_gradients(self, identifier, gradients):
         raise NotImplementedError
 
-    def normalize(self, size):
+    def get_parameters(self):
         raise NotImplementedError
 
-    def update(self, activation, error, cost):
+    def get_name(self):
         raise NotImplementedError
-
-    def _update(self, activation, delta, weights, biases, error, cost):
-        raise NotImplementedError
-
-    def with_delta(self, delta):
-        self._delta = delta
-        return self
-
-    def with_weights(self, weights):
-        self._weights = weights
-        return self
-
-    def with_biases(self, biases):
-        self._biases = biases
-        return self
-
-    def get_learning_rate(self):
-        return 0
-
