@@ -17,6 +17,7 @@ class Dense(Layer):
         self._weights = None
         self._biases = None
         self._activations = None
+        self._z = None
         self._delta = None
         self._optimizer = None
 

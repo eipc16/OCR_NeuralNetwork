@@ -9,3 +9,6 @@ class MeanSquaredError(Loss):
         cost = np.mean(np.square(error))
         error /= y.shape[0]
         return error, cost
+
+    def get_name(self):
+        return 'MSE'

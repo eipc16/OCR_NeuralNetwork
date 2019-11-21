@@ -47,4 +47,5 @@ def save_plot_accuracy(data, title='', path=''):
 
     ax.legend(loc='lower right')
     plt.savefig(path)
+    plt.show()
 

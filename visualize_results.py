@@ -13,7 +13,7 @@ def load(test_cases, title, time_title):
         data_names.append(test_case['name'])
         data_times.append(time)
 
-    save_plot_accuracy(data[1:], title, './plots/weights/weights_accuracy_without_zero.png')
+    save_plot_accuracy(data, title, f'./plots/{time_title}.png')
 
 batch_size = [
     {
@@ -145,5 +145,76 @@ weights_plots = [
     },
 ]
 
+optimizers_plots = [
+    {
+        'path': './lab_3/optimizers/AdaGrad Optimizer/validation/validation_accr_batch=32_epochs=30_lr=0.pkl',
+        'name': 'AdaGrad',
+        'color': 'r'
+    },
+    {
+        'path': './lab_3/optimizers/AdaDelta Optimizer/validation/validation_accr_batch=32_epochs=30_lr=0.pkl',
+        'name': 'AdaDelta',
+        'color': 'g'
+    },
+    {
+        'path': './lab_3/optimizers/Static Gradient Descent/validation/validation_accr_batch=32_epochs=30_lr=0.pkl',
+        'name': 'Static Gradient Descent',
+        'color': 'b'
+    },
+    {
+        'path': './lab_3/optimizers/Momentum Optimizer/validation/validation_accr_batch=32_epochs=30_lr=0.pkl',
+        'name': 'Momentum',
+        'color': 'y'
+    },
+    {
+        'path': './lab_3/optimizers/Adam Optimizer/validation/validation_accr_batch=32_epochs=30_lr=0.pkl',
+        'name': 'Adam Optimizer',
+        'color': 'k'
+    }
+]
+
+initializers = [
+    {
+        'path': './lab_3/initializers/xavier-gain=6/validation/validation_accr_batch=32_epochs=30_lr=0.pkl',
+        'name': 'Xavier Initializer',
+        'color': 'k'
+    },
+    {
+        'path': './lab_3/initializers/he-initializer-/validation/validation_accr_batch=32_epochs=30_lr=0.pkl',
+        'name': 'He Initializer',
+        'color': 'g'
+    },
+    {
+        'path': './lab_3/initializers/normal-distribution-loc=0-scale=1-a=10/validation/validation_accr_batch=32_epochs=30_lr=0.pkl',
+        'name': 'Normal Initializer',
+        'color': 'b'
+    }
+]
+
+costs = [
+    {
+        'path': './lab_3/cost/func=MSE&last_layer=softmax-stable/validation/validation_accr_batch=32_epochs=30_lr=0.pkl',
+        'name': 'Softmax - MSE',
+        'color': 'g'
+    },
+    {
+        'path': './lab_3/cost/func=CrossEntropy&last_layer=sigmoid/validation/validation_accr_batch=32_epochs=30_lr=0.pkl',
+        'name': 'Sigmoid - CrossEntropy',
+        'color': 'b'
+    },
+    {
+        'path': './lab_3/cost/func=MSE&last_layer=sigmoid/validation/validation_accr_batch=32_epochs=30_lr=0.pkl',
+        'name': 'Sigmoid - MSE',
+        'color': 'y'
+    },
+    {
+        'path': './lab_3/cost/func=CrossEntropy&last_layer=softmax-stable/validation/validation_accr_batch=32_epochs=30_lr=0.pkl',
+        'name': 'Softmax - CrossEntropy',
+        'color': 'k'
+    }
+]
+
 # load(twolayers, 'Porównanie predykcji na zbiorze walidacyjnym i treningowym')
-load(weights_plots, 'Proces uczenia w zależności od inicjalizacji wag', '')
+load(optimizers_plots, 'Wpływ optymalizatora wag na szybkość uczenia', 'optimizer_plots')
+load(initializers, 'Wpływ sposobu inicjacji wag wag na szybkość uczenia', 'initializer_plots')
+load(costs, 'Wpływ funkcji starty na szybkość uczenia', 'cost-function_plots')

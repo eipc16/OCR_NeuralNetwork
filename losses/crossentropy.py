@@ -20,3 +20,6 @@ class CrossEntropy(Loss):
         error = CrossEntropy._calc_error(y, y_pred)
         cost = CrossEntropy._calc_cost(y, y_pred)
         return error, cost
+
+    def get_name(self):
+        return 'CrossEntropy'

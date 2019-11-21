@@ -1,25 +1,24 @@
 from activations.relu import ReLu
-from activations.softmax import Softmax
 from callbacks.logger_callback import LoggerCallback
 from callbacks.plot_callback import PlotCallback
 from initializers.xavier_initializer import XavierInitializer
-from layers.dense import Dense
-from losses.crossentropy import CrossEntropy
 from models.model import NeuralNetwork
+from optimizers.gradient_descent_static import StaticGradientDescent
+from layers.dense import Dense
 from tests.default_config import default_parameters, X_train, y_train, X_val, y_val, X_test, y_test
 
 
-def test_single_optimizer(optimizer):
+def test_single_cost_and_last_layer(cost_func, last_layer):
     model = NeuralNetwork(
-        optimizer=optimizer,
-        loss=CrossEntropy(),
+        optimizer=StaticGradientDescent(),
+        loss=cost_func,
         layers=[
             Dense(layer_size=50, activation_func=ReLu(), weight_initializer=XavierInitializer()),
-            Dense(layer_size=10, activation_func=Softmax(), weight_initializer=XavierInitializer())
+            Dense(layer_size=10, activation_func=last_layer, weight_initializer=XavierInitializer())
         ],
         callbacks=[
             LoggerCallback(),
-            PlotCallback(f'./lab_3/optimizers/{optimizer.get_name()}')
+            PlotCallback(f'./lab_3/cost/func={cost_func.get_name()}&last_layer={last_layer.get_name()}')
         ]
     )
 
@@ -29,6 +28,6 @@ def test_single_optimizer(optimizer):
     model.test(X_test, y_test)
 
 
-def perform_optimizer_test(optimizer_list):
-    for optimizer in optimizer_list:
-        test_single_optimizer(optimizer)
+def perform_cost_and_last_layer_tests(data_list):
+    for data in data_list:
+        test_single_cost_and_last_layer(data[0], data[1])
