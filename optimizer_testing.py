@@ -6,10 +6,10 @@ from optimizers.momentum_optimizer import MomentumOptimizer
 from tests.optimizer_tests import perform_optimizer_test
 
 optimizers = [
-    StaticGradientDescent(),
-    AdamOptimizer(),
-    MomentumOptimizer(),
-    AdaGradOptimizer(),
+    StaticGradientDescent(learning_rate=0.001),
+    AdamOptimizer(learning_rate=0.001),
+    MomentumOptimizer(learning_rate=0.001),
+    AdaGradOptimizer(learning_rate=0.001),
     AdaDeltaOptimizer()
 ]
 

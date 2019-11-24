@@ -11,7 +11,7 @@ from tests.default_config import default_parameters, X_train, y_train, X_val, y_
 
 def test_single_initializer(initializer):
     model = NeuralNetwork(
-        optimizer=StaticGradientDescent(),
+        optimizer=StaticGradientDescent(default_parameters['learning_rate']),
         loss=CrossEntropy(),
         layers=[
             Dense(layer_size=50, activation_func=ReLu(), weight_initializer=initializer),

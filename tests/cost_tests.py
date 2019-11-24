@@ -10,7 +10,7 @@ from tests.default_config import default_parameters, X_train, y_train, X_val, y_
 
 def test_single_cost_and_last_layer(cost_func, last_layer):
     model = NeuralNetwork(
-        optimizer=StaticGradientDescent(),
+        optimizer=StaticGradientDescent(default_parameters['learning_rate']),
         loss=cost_func,
         layers=[
             Dense(layer_size=50, activation_func=ReLu(), weight_initializer=XavierInitializer()),
