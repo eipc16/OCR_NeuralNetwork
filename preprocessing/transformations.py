@@ -2,15 +2,9 @@ import numpy as np
 
 
 def convert_to_one_hot(array):
-    number_of_classes = np.max(array) + 1
-    return np.eye(number_of_classes, dtype=np.int32)[array]
+    return np.eye(np.max(array) + 1, dtype=np.int32)[array]
 
 
-def flatten_image(image):
-    pixels, shape = 1, image.shape[1:]
-
-    for size in shape:
-        pixels *= size
-
-    flattened = np.reshape(image, (-1, pixels))
-    return flattened / 255
+def reshape(image, shape):
+    flattened = np.reshape(image, (-1, *shape)).astype(np.float16)
+    return flattened / 255.0

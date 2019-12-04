@@ -5,7 +5,8 @@ from initializers.initializer import Initializer
 
 class HeInitializer(Initializer):
     def __call__(self, shape):
-        return np.random.randn(shape[0], shape[1]) * np.sqrt(1 / (shape[0] + shape[1]))
+        fan_in, fan_out = self.compute_fans(shape)
+        return np.random.randn(fan_in, fan_out) * np.sqrt(2 / (fan_in + fan_out))
 
     def get_name(self):
         return f'he-initializer-'

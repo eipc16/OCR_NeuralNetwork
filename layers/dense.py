@@ -2,7 +2,6 @@ from activations.sigmoid import Sigmoid
 from initializers.xavier_initializer import XavierInitializer
 from initializers.zero_initializer import ZeroInitializer
 from layers.layer import Layer
-from optimizers.optimizer import Optimizer
 
 import numpy as np
 
@@ -10,34 +9,38 @@ import numpy as np
 class Dense(Layer):
     def __init__(self, layer_size, weight_initializer=XavierInitializer(), activation_func=Sigmoid(),
                  bias_initializer=ZeroInitializer(), layer_name='dense'):
-        super().__init__(layer_size, layer_name)
+        super().__init__(layer_name)
         self._weight_initializer = weight_initializer
         self._activation_func = activation_func
         self._bias_initializer = bias_initializer
-        self._weights = None
-        self._biases = None
-        self._activations = None
+        self._layer_size = layer_size
         self._z = None
-        self._delta = None
-        self._optimizer = None
 
-    def __call__(self, previous_layer_size, optimizer):
-        self._weights = self._weight_initializer((previous_layer_size, self._layer_size))
+    def __call__(self, previous_layer_shape, optimizer, calc_error=True):
+        self._weights = self._weight_initializer((previous_layer_shape, self._layer_size))
         self._biases = self._bias_initializer((1, self._layer_size))
         self._optimizer = optimizer
+        self._calc_error = calc_error
+        return self._layer_size
 
-    def get_error(self):
-        return self._delta @ self._weights.T
+    def feed(self, input_layer):
+        self._input_layer = input_layer
+        self._z = input_layer @ self._weights + self._biases
+        self._output_layer = self._activation_func.run(self._z)
+        return self._output_layer
 
-    def update_delta(self, error):
-        self._delta = error * self._activation_func.derivative(self._activations)
+    def back(self, error):
+        delta_error = self._get_delta(error)
+        if self._calc_error:
+            error = self._get_error(delta_error)
 
-    def feed(self, x):
-        self._activations = self._activation_func.run(x @ self._weights + self._biases)
-        return self._activations
-
-    def update(self, x, error, cost):
-        self._weights += self._optimizer.calc_gradients(id(self._weights), x.T @ self._delta)
+        self._weights += self._optimizer.calc_gradients(id(self._weights), self._input_layer.T @ delta_error)
         self._biases += self._optimizer.calc_gradients(id(self._biases),
-                                                       np.sum(self._delta, axis=0, keepdims=True))
-        return self._activations
+                                                       np.sum(delta_error, axis=0, keepdims=True))
+        return error
+
+    def _get_error(self, delta):
+        return delta @ self._weights.T
+
+    def _get_delta(self, error):
+        return error * self._activation_func.derivative(self._z)

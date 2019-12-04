@@ -13,23 +13,15 @@ class NeuralNetwork:
         self._callbacks = callbacks if layers else []
         self._state = None
 
-    def _update_layers(self, x, error, cost):
-        for layer in self._layers:
-            x = layer.update(x, error, cost)
-
-    def _back_propagation(self, x, error, cost):
-        for layer in self._layers[::-1][:-1]:
-            layer.update_delta(error)
-            error = layer.get_error()
-
-        self._layers[0].update_delta(error)
-        self._update_layers(x, error, cost)
-
     def _run_batch(self, x_batch, y_batch):
         y_pred = self.predict(x_batch)
         error, cost = self._loss(y_batch, y_pred)
-        self._back_propagation(x_batch, error, cost)
+        self._back_propagation(error)
         return y_pred, cost
+
+    def _back_propagation(self, error):
+        for layer in self._layers[::-1][:-1]:
+            error = layer.back(error)
 
     @staticmethod
     def _shuffle_data(x_train, y_train):
@@ -49,13 +41,12 @@ class NeuralNetwork:
     def _prepare_layers(self, input_size):
         size = input_size
         for layer in self._layers:
-            layer(size, self._optimizer)
-            size = layer.get_size()
+            size = layer(size, self._optimizer)
 
     @Timer(dump_to_file=True, message='Training time')
     def fit(self, x_train, y_train, x_val=None, y_val=None, epochs=1000, batch_size=32):
         self._state = NetworkState()
-        self._prepare_layers(x_train.shape[1])
+        self._prepare_layers(x_train.shape[1:])
 
         self._state.batch_size = batch_size
         self._state.epochs = epochs

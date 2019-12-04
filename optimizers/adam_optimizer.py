@@ -6,7 +6,7 @@ from optimizers.optimizer import Optimizer
 
 
 class AdamOptimizer(Optimizer):
-    def __init__(self, learning_rate=0.001, beta_01=0.0, beta_02=0.999, epsilon=1e-8):
+    def __init__(self, learning_rate=0.001, beta_01=0.9, beta_02=0.999, epsilon=1e-8):
         self._learning_rate = learning_rate
         self._beta_01 = beta_01
         self._beta_02 = beta_02

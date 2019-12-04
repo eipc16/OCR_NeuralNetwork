@@ -99,28 +99,28 @@ from tests.weights_tests import test_weight_initializers
 
 initializers = [
     XavierInitializer(gain=6),
-    HeInitializer(),
-    NormalInitializer(loc=0, scale=1, a=10)
+    # HeInitializer(),
+    # NormalInitializer(loc=0, scale=1, a=10)
 ]
 
 perform_initializer_test(initializers)
-
-optimizers = [
-    StaticGradientDescent(learning_rate=0.001),
-    AdamOptimizer(learning_rate=0.001),
-    MomentumOptimizer(learning_rate=0.001),
-    AdaGradOptimizer(learning_rate=0.001),
-    AdaDeltaOptimizer()
-]
-
-perform_optimizer_test(optimizers)
-
-cost_experiments = [
-    [CrossEntropy(), Softmax()],
-    [CrossEntropy(), Sigmoid()],
-    [MeanSquaredError(), Softmax()],
-    [MeanSquaredError(), Sigmoid()]
-]
-
-perform_cost_and_last_layer_tests(cost_experiments)
-
+#
+# optimizers = [
+#     StaticGradientDescent(learning_rate=0.001),
+#     AdamOptimizer(learning_rate=0.001),
+#     MomentumOptimizer(learning_rate=0.001),
+#     AdaGradOptimizer(learning_rate=0.001),
+#     AdaDeltaOptimizer()
+# ]
+#
+# perform_optimizer_test(optimizers)
+#
+# cost_experiments = [
+#     [CrossEntropy(), Softmax()],
+#     [CrossEntropy(), Sigmoid()],
+#     [MeanSquaredError(), Softmax()],
+#     [MeanSquaredError(), Sigmoid()]
+# ]
+#
+# perform_cost_and_last_layer_tests(cost_experiments)
+#

@@ -11,8 +11,9 @@ class NormalInitializer(Initializer):
         self.a = a
 
     def __call__(self, shape):
+        _, fan_out = self.compute_fans(shape)
         weights = np.random.normal(self.loc, self.scale, size=shape)
-        return weights * np.sqrt(self.a / shape[1])
+        return weights * np.sqrt(self.a / fan_out)
 
     def get_name(self):
         return f'normal-distribution-loc={self.loc}-scale={self.scale}-a={self.a}'

@@ -8,7 +8,8 @@ class XavierInitializer(Initializer):
         self._gain = gain
 
     def __call__(self, shape):
-        bound = np.sqrt(self._gain / (shape[0] + shape[1]))
+        fan_in, fan_out = self.compute_fans(shape)
+        bound = np.sqrt(self._gain / (fan_in + fan_out))
         return np.random.uniform(-bound, bound, size=shape)
 
     def get_name(self):
