@@ -35,7 +35,8 @@ class MaxPooling2D(Layer):
         stride_1, stride_2, stride_3, stride_4 = input_layer.strides
         view_shape = (num_of_inputs, mH, mW, pH, pW, num_of_channels)
         strides_shape = (stride_1, stride_2 * stride_height, stride_3 * stride_width, stride_2, stride_3, stride_4)
-        strided_layer_view = as_strided(input_layer, shape=view_shape, strides=strides_shape, writeable=False).astype(np.float16)
+        strided_layer_view = as_strided(input_layer.astype(np.float16), shape=view_shape, strides=strides_shape,
+                                        writeable=False).astype(np.float16)
         self._mask, self._output_layer = self._pooling(strided_layer_view)
         return self._output_layer
 
@@ -48,7 +49,8 @@ class MaxPooling2D(Layer):
         stride_1, stride_2, stride_3, stride_4 = error.strides
         view_shape = (num_of_inputs, xH, xW, pH, pW, filters)
         strides_shape = (stride_1, stride_2 * stride_height, stride_3 * stride_width, stride_2, stride_3,  stride_4)
-        strided_error_view = as_strided(error, shape=view_shape, strides=strides_shape, writeable=False).astype(np.float16)
+        strided_error_view = as_strided(error.astype(np.float16), shape=view_shape, strides=strides_shape,
+                                        writeable=False).astype(np.float16)
         return strided_error_view.astype(np.float16)
 
     def back(self, error):
