@@ -23,7 +23,7 @@ def test_signle_convo_network(test):
         layers=test['layers'],
         callbacks=[
             LoggerCallback(),
-            PlotCallback(f"./lab_3/initializers/{test['test_name']}")
+            PlotCallback(f"./lab_4/{test['test_name']}")
         ]
     )
 
