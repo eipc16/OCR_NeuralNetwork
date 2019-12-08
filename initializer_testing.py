@@ -5,8 +5,8 @@ from tests.initializer_tests import perform_initializer_test
 
 initializers = [
     XavierInitializer(gain=6),
-    HeInitializer(),
-    NormalInitializer(loc=0, scale=1, a=10)
+    # HeInitializer(),
+    # NormalInitializer(loc=0, scale=1, a=10)
 ]
 
 perform_initializer_test(initializers)

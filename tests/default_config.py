@@ -1,7 +1,7 @@
 from preprocessing.data_loader import get_data
 
 default_parameters = {
-    'epochs': 30,
+    'epochs': 40,
     'batch_size': 32,
     'learning_rate': 0.0002,
 }

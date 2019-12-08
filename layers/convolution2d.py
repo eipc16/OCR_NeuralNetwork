@@ -37,7 +37,7 @@ class Convolution2D(Layer):
         stride_height, stride_width = self._stride
         kernel_1, kernel_2, num_of_channels, _ = self._weights.shape
         stride_1, stride_2, stride_3, stride_4 = input_layer.strides
-        view_shape = (num_of_inputs, xH, xW, kernel_1, kernel_2, num_of_channels)
+        view_shape = (num_of_inputs, xH, xW, kernel_1, kernel_2, filters)
         strides_shape = (stride_1, stride_2 * stride_height, stride_3 * stride_width, stride_2, stride_3, stride_4)
         # we create a view of the layer of shape view_shape, width_strides of shape strides_shape
         # the last argument tells numpy to not modify source matrix

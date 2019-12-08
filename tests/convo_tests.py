@@ -16,40 +16,14 @@ from optimizers.gradient_descent_static import StaticGradientDescent
 from tests.default_config import default_parameters, X_train, y_train, X_val, y_val, X_test, y_test
 
 
-def test_single_initializer_with_convo(initializer):
+def test_signle_convo_network(test):
     model = NeuralNetwork(
         optimizer=AdamOptimizer(learning_rate=default_parameters['learning_rate'] * 10),
         loss=CrossEntropy(),
-        layers=[
-            Convolution2D(num_of_filters=8, kernel=(3, 3), activation_func=ReLu()),
-            MaxPooling2D(pool_size=(2, 2), stride=(2, 2)),
-            Flatten(),
-            Dense(layer_size=50, activation_func=ReLu(), weight_initializer=initializer),
-            Dense(layer_size=10, activation_func=Softmax(), weight_initializer=initializer)
-        ],
+        layers=test['layers'],
         callbacks=[
             LoggerCallback(),
-            PlotCallback(f'./lab_3/initializers/{initializer.get_name()}')
-        ]
-    )
-
-    model.fit(x_train=X_train, y_train=y_train, x_val=X_val, y_val=y_val,
-              epochs=default_parameters['epochs'], batch_size=default_parameters['batch_size'])
-
-    model.test(X_test, y_test)
-
-def test_single_initializer(initializer):
-    model = NeuralNetwork(
-        optimizer=AdamOptimizer(learning_rate=default_parameters['learning_rate']),
-        loss=CrossEntropy(),
-        layers=[
-            Flatten(),
-            Dense(layer_size=50, activation_func=ReLu(), weight_initializer=initializer),
-            Dense(layer_size=10, activation_func=Softmax(), weight_initializer=initializer)
-        ],
-        callbacks=[
-            LoggerCallback(),
-            PlotCallback(f'./lab_3/initializers/{initializer.get_name()}')
+            PlotCallback(f"./lab_3/initializers/{test['test_name']}")
         ]
     )
 
@@ -68,9 +42,29 @@ conv_tests = [
         ]
     },
     {
-        'test_name': 'normal_C3x3-F4_MP2x2_F_D50_D10',
+        'test_name': 'normal_C8x8-F4_MP2x2_F_D50_D10',
         'layers': [
-            Convolution2D(num_of_filters=4, kernel=(3, 3), activation_func=ReLu()),
+            Convolution2D(num_of_filters=4, kernel=(8, 8), activation_func=ReLu()),
+            MaxPooling2D(pool_size=(2, 2), stride=(2, 2)),
+            Flatten(),
+            Dense(layer_size=50, activation_func=ReLu(), weight_initializer=HeInitializer()),
+            Dense(layer_size=10, activation_func=Softmax(), weight_initializer=HeInitializer())
+        ]
+    },
+    {
+        'test_name': 'normal_C6x6-F4_MP2x2_F_D50_D10',
+        'layers': [
+            Convolution2D(num_of_filters=4, kernel=(6, 6), activation_func=ReLu()),
+            MaxPooling2D(pool_size=(2, 2), stride=(2, 2)),
+            Flatten(),
+            Dense(layer_size=50, activation_func=ReLu(), weight_initializer=HeInitializer()),
+            Dense(layer_size=10, activation_func=Softmax(), weight_initializer=HeInitializer())
+        ]
+    },
+    {
+        'test_name': 'normal_C1x1-F4_MP2x2_F_D50_D10',
+        'layers': [
+            Convolution2D(num_of_filters=4, kernel=(6, 6), activation_func=ReLu()),
             MaxPooling2D(pool_size=(2, 2), stride=(2, 2)),
             Flatten(),
             Dense(layer_size=50, activation_func=ReLu(), weight_initializer=HeInitializer()),
@@ -118,6 +112,26 @@ conv_tests = [
         ]
     },
     {
+        'test_name': 'normal_C3x3-F8_MP4x4_F_D50_D10',
+        'layers': [
+            Convolution2D(num_of_filters=8, kernel=(3, 3), activation_func=ReLu()),
+            MaxPooling2D(pool_size=(4, 4), stride=(4, 4)),
+            Flatten(),
+            Dense(layer_size=50, activation_func=ReLu(), weight_initializer=HeInitializer()),
+            Dense(layer_size=10, activation_func=Softmax(), weight_initializer=HeInitializer())
+        ]
+    },
+    {
+        'test_name': 'normal_C3x3-F8_MP7x7_F_D50_D10',
+        'layers': [
+            Convolution2D(num_of_filters=8, kernel=(3, 3), activation_func=ReLu()),
+            MaxPooling2D(pool_size=(7, 7), stride=(7, 7)),
+            Flatten(),
+            Dense(layer_size=50, activation_func=ReLu(), weight_initializer=HeInitializer()),
+            Dense(layer_size=10, activation_func=Softmax(), weight_initializer=HeInitializer())
+        ]
+    },
+    {
         'test_name': 'normal_C3x3-F8_F_D50_D10',
         'layers': [
             Convolution2D(num_of_filters=8, kernel=(3, 3), activation_func=ReLu()),
@@ -128,7 +142,8 @@ conv_tests = [
     },
 ]
 
-def perform_initializer_test(initializer_list):
-    for initializer in initializer_list:
-        # test_single_initializer(initializer)
-        test_single_initializer_with_convo(initializer)
+def perform_convo_tests(test_list):
+    for test in test_list:
+        test_signle_convo_network(test)
+
+perform_convo_tests(conv_tests)
