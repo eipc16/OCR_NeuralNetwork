@@ -2,9 +2,9 @@ from keras.datasets import mnist
 
 from preprocessing.transformations import convert_to_one_hot, reshape
 
-TRAINING_SIZE = 20000
-VALIDATION_SIZE = 2000
-TEST_SIZE = 2000
+TRAINING_SIZE = 5000
+VALIDATION_SIZE = 1000
+TEST_SIZE = 1000
 
 def get_data():
     (X_train, y_train), (X_test, y_test) = mnist.load_data()

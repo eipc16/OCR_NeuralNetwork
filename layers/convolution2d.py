@@ -47,8 +47,7 @@ class Convolution2D(Layer):
         # (self._kernel[0], self._kernel[1], previous_layer_shape[2], self._num_of_filters)
         #   h - kernel height, w - kernel width, W - previous_layer_shape[2], f - num_of_filters, c - number of channels
         # M - number of inputs, H - layer HEIGHT, W - layer WIDTH
-        return np.einsum('MHWhwc,hwcf->MHWf', strided_layer_view.astype(np.float16), self._weights.astype(np.float16))\
-            .astype(np.float16) + self._biases
+        return np.einsum('MHWhwc,hwcf->MHWf', strided_layer_view.astype(np.float16), self._weights.astype(np.float16)) + self._biases
 
     def feed(self, input_layer):
         self._input_layer = input_layer.astype(np.float16)
