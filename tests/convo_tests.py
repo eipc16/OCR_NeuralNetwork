@@ -18,7 +18,7 @@ from tests.default_config import default_parameters, X_train, y_train, X_val, y_
 
 def test_signle_convo_network(test):
     model = NeuralNetwork(
-        optimizer=AdamOptimizer(learning_rate=default_parameters['learning_rate'] * 10),
+        optimizer=AdamOptimizer(learning_rate=default_parameters['learning_rate']),
         loss=CrossEntropy(),
         layers=test['layers'],
         callbacks=[

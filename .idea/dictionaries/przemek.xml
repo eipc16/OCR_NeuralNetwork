@@ -4,6 +4,7 @@
       <w>accr</w>
       <w>relu</w>
       <w>softmax</w>
+      <w>strided</w>
     </words>
   </dictionary>
 </component>

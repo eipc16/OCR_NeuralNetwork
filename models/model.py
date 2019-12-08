@@ -70,8 +70,8 @@ class NeuralNetwork:
                 self._run_callbacks('on_batch_end')
 
             train_pred = self.predict(x_train[:500])
-            _, train_cost = self._loss(y_train, train_pred)
-            self._state.current_training_accuracy = NormalAccuracy.calculate(y_train[:500], train_pred[:500])
+            _, train_cost = self._loss(y_train[:500], train_pred)
+            self._state.current_training_accuracy = NormalAccuracy.calculate(y_train[:500], train_pred)
             self._state.current_training_cost = np.mean(train_cost)
 
             if x_val is not None and y_val is not None:
