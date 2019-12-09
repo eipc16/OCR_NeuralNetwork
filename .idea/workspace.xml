@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1595083a-328a-4a7e-88d7-5d53583a75e8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/lab_4/normal_F_D50_D10/training/training_accr_batch=32_epochs=40_lr=0.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/lab_4/normal_F_D50_D10/training/training_accr_batch=32_epochs=40_lr=0.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab_4/normal_F_D50_D10/training/training_costs_batch=32_epochs=40_lr=0.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/lab_4/normal_F_D50_D10/training/training_costs_batch=32_epochs=40_lr=0.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab_4/normal_F_D50_D10/validation/validation_accr_batch=32_epochs=40_lr=0.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/lab_4/normal_F_D50_D10/validation/validation_accr_batch=32_epochs=40_lr=0.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab_4/normal_F_D50_D10/validation/validation_costs_batch=32_epochs=40_lr=0.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/lab_4/normal_F_D50_D10/validation/validation_costs_batch=32_epochs=40_lr=0.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layers/convolution2d.py" beforeDir="false" afterPath="$PROJECT_DIR$/layers/convolution2d.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/data_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/data_loader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/default_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/default_config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/convo_tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/convo_tests.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,43 +20,43 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/preprocessing/data_loader.py">
+        <entry file="file://$PROJECT_DIR$/layers/max_pooling.py">
           <provider selected="true" editor-type-id="live-pycharm">
             <state>
-              <first_editor relative-caret-position="329">
-                <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+              <first_editor relative-caret-position="115">
+                <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
                 <folding>
-                  <element signature="e#0#32#0" expanded="true" />
+                  <element signature="e#0#18#0" expanded="true" />
                 </folding>
               </first_editor>
-              <second_editor relative-caret-position="-154" />
+              <second_editor relative-caret-position="-69" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/layers/max_pooling.py">
+        <entry file="file://$PROJECT_DIR$/tests/default_config.py">
           <provider selected="true" editor-type-id="live-pycharm">
             <state>
               <first_editor relative-caret-position="184">
-                <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
-                <folding>
-                  <element signature="e#0#18#0" expanded="true" />
-                </folding>
+                <caret line="8" column="38" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
               </first_editor>
               <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/default_config.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/cost_tests.py">
           <provider selected="true" editor-type-id="live-pycharm">
             <state>
-              <first_editor relative-caret-position="184">
-                <caret line="8" column="57" lean-forward="true" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
+              <first_editor relative-caret-position="518">
+                <caret line="24" column="73" lean-forward="true" selection-start-line="24" selection-start-column="73" selection-end-line="24" selection-end-column="73" />
+                <folding>
+                  <element signature="e#0#33#0" expanded="true" />
+                </folding>
               </first_editor>
-              <second_editor />
+              <second_editor relative-caret-position="-34" />
             </state>
           </provider>
         </entry>
@@ -97,13 +92,13 @@
         <entry file="file://$PROJECT_DIR$/layers/convolution2d.py">
           <provider selected="true" editor-type-id="live-pycharm">
             <state>
-              <first_editor relative-caret-position="77">
-                <caret line="49" column="46" lean-forward="true" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
+              <first_editor relative-caret-position="989">
+                <caret line="49" column="46" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
                 <folding>
                   <element signature="e#0#18#0" expanded="true" />
                 </folding>
               </first_editor>
-              <second_editor relative-caret-position="-161" />
+              <second_editor relative-caret-position="-138" />
             </state>
           </provider>
         </entry>
@@ -112,22 +107,22 @@
         <entry file="file://$PROJECT_DIR$/tests/initializer_tests.py">
           <provider selected="true" editor-type-id="live-pycharm">
             <state>
-              <first_editor relative-caret-position="328">
-                <caret line="34" lean-forward="true" selection-start-line="31" selection-start-column="52" selection-end-line="34" />
+              <first_editor relative-caret-position="437">
+                <caret line="34" selection-start-line="31" selection-start-column="52" selection-end-line="34" />
               </first_editor>
-              <second_editor relative-caret-position="-109" />
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/convo_tests.py">
           <provider selected="true" editor-type-id="live-pycharm">
             <state>
-              <first_editor relative-caret-position="301">
-                <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
+              <first_editor relative-caret-position="207">
+                <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
               </first_editor>
-              <second_editor relative-caret-position="-161" />
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -136,13 +131,13 @@
         <entry file="file://$PROJECT_DIR$/models/model.py">
           <provider selected="true" editor-type-id="live-pycharm">
             <state>
-              <first_editor relative-caret-position="316">
+              <first_editor relative-caret-position="1587">
                 <caret line="73" column="103" selection-start-line="73" selection-start-column="102" selection-end-line="73" selection-end-column="103" />
                 <folding>
                   <element signature="e#0#18#0" expanded="true" />
                 </folding>
               </first_editor>
-              <second_editor relative-caret-position="-161" />
+              <second_editor relative-caret-position="-92" />
             </state>
           </provider>
         </entry>
@@ -236,10 +231,10 @@
         <option value="$PROJECT_DIR$/tests/initializer_tests.py" />
         <option value="$PROJECT_DIR$/layers/max_pooling.py" />
         <option value="$PROJECT_DIR$/models/model.py" />
-        <option value="$PROJECT_DIR$/tests/convo_tests.py" />
         <option value="$PROJECT_DIR$/layers/convolution2d.py" />
         <option value="$PROJECT_DIR$/preprocessing/data_loader.py" />
         <option value="$PROJECT_DIR$/tests/default_config.py" />
+        <option value="$PROJECT_DIR$/tests/convo_tests.py" />
       </list>
     </option>
   </component>
@@ -254,6 +249,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -295,7 +291,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -328,6 +323,9 @@
       <module name="OOP_NeuralNetwork" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="$PROJECT_DIR$/mnist-venv/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
@@ -537,7 +535,8 @@
       <workItem from="1575461529105" duration="5468000" />
       <workItem from="1575632225721" duration="374000" />
       <workItem from="1575841981438" duration="1312000" />
-      <workItem from="1575847117773" duration="2331000" />
+      <workItem from="1575847117773" duration="2558000" />
+      <workItem from="1575933049680" duration="470000" />
     </task>
     <task id="LOCAL-00001" summary="fully objected oriented neural network">
       <created>1572556763723</created>
@@ -578,19 +577,19 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103637000" />
+    <option name="totallyTimeSpent" value="104334000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="37" width="1924" height="1045" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13713981" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13874066" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.518847" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.518847" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -885,19 +884,6 @@
     <entry file="file://$PROJECT_DIR$/plots/optimizer_plots.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/cost_tests.py">
-      <provider selected="true" editor-type-id="live-pycharm">
-        <state>
-          <first_editor relative-caret-position="204">
-            <caret line="23" selection-start-line="23" selection-end-line="23" />
-            <folding>
-              <element signature="e#0#33#0" expanded="true" />
-            </folding>
-          </first_editor>
-          <second_editor relative-caret-position="-161" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/visualizations/validation_err_visualization.py">
       <provider selected="true" editor-type-id="live-pycharm">
         <state>
@@ -1145,6 +1131,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/preprocessing/data_loader.py">
+      <provider selected="true" editor-type-id="live-pycharm">
+        <state>
+          <first_editor relative-caret-position="437">
+            <caret line="21" selection-start-line="21" selection-end-line="21" />
+            <folding>
+              <element signature="e#0#32#0" expanded="true" />
+            </folding>
+          </first_editor>
+          <second_editor relative-caret-position="-46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/layers/max_pooling.py">
+      <provider selected="true" editor-type-id="live-pycharm">
+        <state>
+          <first_editor relative-caret-position="115">
+            <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+            <folding>
+              <element signature="e#0#18#0" expanded="true" />
+            </folding>
+          </first_editor>
+          <second_editor relative-caret-position="-69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/activations/relu.py">
+      <provider selected="true" editor-type-id="live-pycharm">
+        <state>
+          <first_editor relative-caret-position="161">
+            <caret line="9" selection-start-line="9" selection-end-line="9" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/neuron_tests.py">
       <provider selected="true" editor-type-id="live-pycharm">
         <state>
@@ -1155,6 +1177,42 @@
             </folding>
           </first_editor>
           <second_editor relative-caret-position="-161" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/layers/convolution2d.py">
+      <provider selected="true" editor-type-id="live-pycharm">
+        <state>
+          <first_editor relative-caret-position="989">
+            <caret line="49" column="46" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
+            <folding>
+              <element signature="e#0#18#0" expanded="true" />
+            </folding>
+          </first_editor>
+          <second_editor relative-caret-position="-138" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/initializer_tests.py">
+      <provider selected="true" editor-type-id="live-pycharm">
+        <state>
+          <first_editor relative-caret-position="437">
+            <caret line="34" selection-start-line="31" selection-start-column="52" selection-end-line="34" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/model.py">
+      <provider selected="true" editor-type-id="live-pycharm">
+        <state>
+          <first_editor relative-caret-position="1587">
+            <caret line="73" column="103" selection-start-line="73" selection-start-column="102" selection-end-line="73" selection-end-column="103" />
+            <folding>
+              <element signature="e#0#18#0" expanded="true" />
+            </folding>
+          </first_editor>
+          <second_editor relative-caret-position="-92" />
         </state>
       </provider>
     </entry>
@@ -1171,93 +1229,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/model.py">
+    <entry file="file://$PROJECT_DIR$/tests/default_config.py">
       <provider selected="true" editor-type-id="live-pycharm">
         <state>
-          <first_editor relative-caret-position="316">
-            <caret line="73" column="103" selection-start-line="73" selection-start-column="102" selection-end-line="73" selection-end-column="103" />
+          <first_editor relative-caret-position="184">
+            <caret line="8" column="38" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/cost_tests.py">
+      <provider selected="true" editor-type-id="live-pycharm">
+        <state>
+          <first_editor relative-caret-position="518">
+            <caret line="24" column="73" lean-forward="true" selection-start-line="24" selection-start-column="73" selection-end-line="24" selection-end-column="73" />
             <folding>
-              <element signature="e#0#18#0" expanded="true" />
+              <element signature="e#0#33#0" expanded="true" />
             </folding>
           </first_editor>
-          <second_editor relative-caret-position="-161" />
+          <second_editor relative-caret-position="-34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/convo_tests.py">
       <provider selected="true" editor-type-id="live-pycharm">
         <state>
-          <first_editor relative-caret-position="301">
-            <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
-          </first_editor>
-          <second_editor relative-caret-position="-161" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/initializer_tests.py">
-      <provider selected="true" editor-type-id="live-pycharm">
-        <state>
-          <first_editor relative-caret-position="328">
-            <caret line="34" lean-forward="true" selection-start-line="31" selection-start-column="52" selection-end-line="34" />
-          </first_editor>
-          <second_editor relative-caret-position="-109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/layers/max_pooling.py">
-      <provider selected="true" editor-type-id="live-pycharm">
-        <state>
-          <first_editor relative-caret-position="184">
-            <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
-            <folding>
-              <element signature="e#0#18#0" expanded="true" />
-            </folding>
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/layers/convolution2d.py">
-      <provider selected="true" editor-type-id="live-pycharm">
-        <state>
-          <first_editor relative-caret-position="77">
-            <caret line="49" column="46" lean-forward="true" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
-            <folding>
-              <element signature="e#0#18#0" expanded="true" />
-            </folding>
-          </first_editor>
-          <second_editor relative-caret-position="-161" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/activations/relu.py">
-      <provider selected="true" editor-type-id="live-pycharm">
-        <state>
-          <first_editor relative-caret-position="161">
-            <caret line="9" selection-start-line="9" selection-end-line="9" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing/data_loader.py">
-      <provider selected="true" editor-type-id="live-pycharm">
-        <state>
-          <first_editor relative-caret-position="329">
-            <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-            <folding>
-              <element signature="e#0#32#0" expanded="true" />
-            </folding>
-          </first_editor>
-          <second_editor relative-caret-position="-154" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/default_config.py">
-      <provider selected="true" editor-type-id="live-pycharm">
-        <state>
-          <first_editor relative-caret-position="184">
-            <caret line="8" column="57" lean-forward="true" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
+          <first_editor relative-caret-position="207">
+            <caret line="24" column="29" lean-forward="true" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="29" />
           </first_editor>
           <second_editor />
         </state>
