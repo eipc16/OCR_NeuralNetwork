@@ -41,19 +41,19 @@ class Convolution2D(Layer):
         strides_shape = (stride_1, stride_2 * stride_height, stride_3 * stride_width, stride_2, stride_3, stride_4)
         # we create a view of the layer of shape view_shape, width_strides of shape strides_shape
         # the last argument tells numpy to not modify source matrix
-        strided_layer_view = as_strided(input_layer.astype(np.float16), shape=view_shape, strides=strides_shape, writeable=False)\
-            .astype(np.float16)
+        strided_layer_view = as_strided(input_layer, shape=view_shape, strides=strides_shape, writeable=False)\
+            
 
         # (self._kernel[0], self._kernel[1], previous_layer_shape[2], self._num_of_filters)
         #   h - kernel height, w - kernel width, W - previous_layer_shape[2], f - num_of_filters, c - number of channels
         # M - number of inputs, H - layer HEIGHT, W - layer WIDTH
-        return np.einsum('MHWhwc,hwcf->MHWf', strided_layer_view.astype(np.float16), self._weights.astype(np.float16)) + self._biases
+        return np.einsum('MHWhwc,hwcf->MHWf', strided_layer_view, self._weights) + self._biases
 
     def feed(self, input_layer):
-        self._input_layer = input_layer.astype(np.float16)
+        self._input_layer = input_layer
         self._z = self.convolve2d(input_layer, input_layer.shape[0], self._output_shape)
         self._output_layer = self._activation_func.run(self._z)
-        return self._output_layer.astype(np.float16)
+        return self._output_layer
 
     def _get_error(self, delta, num_of_inputs, out_shape):
         mH, mW = out_shape
@@ -62,24 +62,24 @@ class Convolution2D(Layer):
         view_shape = (num_of_inputs, mH, mW, kernel_1, kernel_2, filters)
         strides_shape = (stride_1, stride_2, stride_3, stride_2, stride_3, stride_4)
         strided_delta_view = as_strided(delta, shape=view_shape, strides=strides_shape, writeable=False)\
-            .astype(np.float16)
-        return np.einsum('MHWhwf,hwcf->MHWc', strided_delta_view.astype(np.float16),
-                         np.rot90(self._weights, 2, axes=(0, 1)).astype(np.float16))\
-            .astype(np.float16)
+            
+        return np.einsum('MHWhwf,hwcf->MHWc', strided_delta_view,
+                         np.rot90(self._weights, 2, axes=(0, 1)))\
+            
 
     def _get_delta(self, error):
         delta_layer = error * self._activation_func.derivative(self._z)
         delta_layer = np.insert(delta_layer, np.repeat(np.arange(1, delta_layer.shape[1]), self._stride[0] - 1),
-                                values=0, axis=1).astype(np.float16)
+                                values=0, axis=1)
         delta_layer = np.insert(delta_layer, np.repeat(np.arange(1, delta_layer.shape[2]), self._stride[1] - 1),
-                                values=0, axis=2).astype(np.float16)
+                                values=0, axis=2)
         return delta_layer
 
     def back(self, error):
-        layer_delta = self._get_delta(error).astype(np.float16)
+        layer_delta = self._get_delta(error)
         if self._calc_error:
             mH, mW, _ = self._output_shape
-            error = self._get_error(layer_delta, layer_delta.shape[0], (mH, mW)).astype(np.float16)
+            error = self._get_error(layer_delta, layer_delta.shape[0], (mH, mW))
 
         # (ker_1, ker_2, 1)
         kernel_1, kernel_2, num_of_channels, _ = self._weights.shape
@@ -88,11 +88,11 @@ class Convolution2D(Layer):
         stride_1, stride_2, stride_3, stride_4 = self._input_layer.strides
         view_shape = (kernel_1, kernel_2, num_of_channels, layer_1, layer_2, layer_3)
         strides_shape = (stride_2, stride_3, stride_4, stride_1, stride_2, stride_3)
-        strided_input_view = as_strided(self._input_layer.astype(np.float16), shape=view_shape, strides=strides_shape,
+        strided_input_view = as_strided(self._input_layer, shape=view_shape, strides=strides_shape,
                                         writeable=False)\
-            .astype(np.float16)
-        delta_weights = np.einsum('HWcMhw,MHwf->HWcf', strided_input_view.astype(np.float16),
-                                  layer_delta.astype(np.float16)).astype(np.float16)
+            
+        delta_weights = np.einsum('HWcMhw,MHwf->HWcf', strided_input_view,
+                                  layer_delta)
         delta_biases = np.sum(layer_delta, axis=(0, 1, 2), keepdims=True, dtype=np.float16)
 
         self._weights += self._optimizer.calc_gradients(id(self._weights), delta_weights)

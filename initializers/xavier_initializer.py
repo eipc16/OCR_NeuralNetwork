@@ -4,7 +4,7 @@ from initializers.initializer import Initializer
 
 
 class XavierInitializer(Initializer):
-    def __init__(self, gain=6):
+    def __init__(self, gain=2):
         self._gain = gain
 
     def __call__(self, shape):

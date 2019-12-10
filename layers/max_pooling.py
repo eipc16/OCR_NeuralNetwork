@@ -21,13 +21,13 @@ class MaxPooling2D(Layer):
 
     @staticmethod
     def _pooling(strided_layer_view):
-        layer = np.max(strided_layer_view, axis=(-3, -2), keepdims=True).astype(np.float16)
-        layer_ = layer + np.random.uniform(0, 1e-8, size=strided_layer_view.shape).astype(np.float16)
-        mask = (layer_ == np.max(layer_, axis=(-3, -2), keepdims=True)).astype(np.float16)
-        return mask, np.squeeze(layer, axis=(-3, -2)).astype(np.float16)
+        layer = np.max(strided_layer_view, axis=(-3, -2), keepdims=True)
+        layer_ = layer + np.random.uniform(0, 1e-8, size=strided_layer_view.shape)
+        mask = (layer_ == np.max(layer_, axis=(-3, -2), keepdims=True))
+        return mask, np.squeeze(layer, axis=(-3, -2))
 
     def feed(self, input_layer):
-        self._input_layer = input_layer.astype(np.float16)
+        self._input_layer = input_layer
         num_of_inputs = input_layer.shape[0]
         mH, mW, num_of_channels = self._output_shape
         pH, pW = self._size
@@ -35,8 +35,8 @@ class MaxPooling2D(Layer):
         stride_1, stride_2, stride_3, stride_4 = input_layer.strides
         view_shape = (num_of_inputs, mH, mW, pH, pW, num_of_channels)
         strides_shape = (stride_1, stride_2 * stride_height, stride_3 * stride_width, stride_2, stride_3, stride_4)
-        strided_layer_view = as_strided(input_layer.astype(np.float16), shape=view_shape, strides=strides_shape,
-                                        writeable=False).astype(np.float16)
+        strided_layer_view = as_strided(input_layer, shape=view_shape, strides=strides_shape,
+                                        writeable=False)
         self._mask, self._output_layer = self._pooling(strided_layer_view)
         return self._output_layer
 
@@ -49,9 +49,9 @@ class MaxPooling2D(Layer):
         stride_1, stride_2, stride_3, stride_4 = error.strides
         view_shape = (num_of_inputs, xH, xW, pH, pW, filters)
         strides_shape = (stride_1, stride_2 * stride_height, stride_3 * stride_width, stride_2, stride_3,  stride_4)
-        strided_error_view = as_strided(error.astype(np.float16), shape=view_shape, strides=strides_shape,
-                                        writeable=False).astype(np.float16)
-        return strided_error_view.astype(np.float16)
+        strided_error_view = as_strided(error, shape=view_shape, strides=strides_shape,
+                                        writeable=False)
+        return strided_error_view
 
     def back(self, error):
         mask = self._mask * error.reshape(self._error_shape)

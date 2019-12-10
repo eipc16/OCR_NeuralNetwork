@@ -12,7 +12,7 @@ class CrossEntropy(Loss):
 
     @staticmethod
     def _calc_cost(y, y_pred):
-        probabilities = -np.log(y_pred[range(y.shape[0]), y])
+        probabilities = -np.log(y_pred[range(y.shape[0]), y] + 1e-8)
         return np.mean(probabilities)
 
     def __call__(self, y, y_pred):
